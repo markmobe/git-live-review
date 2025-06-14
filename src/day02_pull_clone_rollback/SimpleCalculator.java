@@ -15,5 +15,8 @@ public class SimpleCalculator {
         System.out.println("Add: " + add(x, y));
         System.out.println("Subtract: " + subtract(x, y));
     }
+    public static int multiply(int a, int b) {
+    return a * b;
+    }
 }
 
