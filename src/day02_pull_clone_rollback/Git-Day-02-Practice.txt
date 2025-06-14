@@ -1,0 +1,375 @@
+
+🔢 Java Git Practice: Simple Calculator + Fetch & Pull
+
+📘 Goal:
+Build a simple calculator program and use Git features in IntelliJ to practice `git fetch` and `git pull`.
+
+✅ Step 1: Create a New package day02_pull_clone_rollback
+
+1. In IntelliJ, right-click your package → New → Java Class SimpleCalculator
+
+-----------------------------------------
+
+public class SimpleCalculator {
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static int subtract(int a, int b) {
+        return a - b;
+    }
+
+    public static void main(String[] args) {
+        int x = 10, y = 5;
+        System.out.println("Add: " + add(x, y));
+        System.out.println("Subtract: " + subtract(x, y));
+    }
+}
+-----------------------------------------
+
+4. Run the program to verify it works.
+
+---
+
+✅ Step 2: Commit and Push to GitHub
+
+1. Go to Git → Commit…
+2. Write a commit message:
+   Added SimpleCalculator class with add and subtract methods
+3. Click Commit and Push
+
+---
+
+✅ Step 3: Simulate Remote Change on GitHub
+
+1. Go to GitHub and open SimpleCalculator.java
+2. Click the pencil (edit) icon
+3. Add a new method:
+
+-----------------------------------------
+public static int multiply(int a, int b) {
+    return a * b;
+}
+-----------------------------------------
+
+4. Write commit message:
+   Added multiply method from GitHub
+5. Click Commit changes
+
+---
+
+✅ Step 4: Fetch in IntelliJ
+
+1. In IntelliJ: Git → Fetch
+2. This checks for remote updates without changing local files
+3. Open Git log and see the commit and difference
+---
+
+✅ Step 5: Pull in IntelliJ
+
+1. In IntelliJ: Git → Pull
+2. This brings in the remote changes into your local code
+3. Open SimpleCalculator.java and verify the multiply() method appears
+
+---
+
+✅ Step 6: Update and Test Main Method
+
+Update `main()` to use the new method:
+
+-----------------------------------------
+System.out.println("Multiply: " + multiply(x, y));
+-----------------------------------------
+
+Re-run to verify the result. then commit and push
+
+---
+🔁 Repeat above Step 3 - Step 5 by adding :
+-----------------------------------------
+public static double divide(int a, int b) {
+    if (b == 0) {
+        System.out.println("Cannot divide by zero.");
+        return 0;
+    }
+    return (double) a / b;
+}
+-----------------------------------------
+
+🧠 Summary Table
+
+| Command     | IntelliJ Action     | Description                              |
+|-------------|----------------------|------------------------------------------|
+| git fetch   | Git → Fetch          | Brings changes from GitHub (no merge)   |
+| git pull    | Git → Pull           | Fetches and merges changes to local repo |
+| View history| Git → Log            | Shows all commit history and sources     |
+
+-----------------------------------------
+
+🚨 IMPORTANT: Always Commit Before Pulling
+
+When working with Git and IntelliJ, always **commit your local changes** before pulling from the remote.
+If you have uncommitted changes and try to pull, IntelliJ might:
+
+- Show an error
+- Automatically stash changes (temporarily hide them)
+- Or worse, cause merge confusion or overwrite
+
+---
+
+🧪 Example Scenario:
+
+1. Open `SimpleCalculator.java` and make a small change:
+   System.out.println("Starting calculator...");
+2.	DO NOT commit the change.
+3.	Go to GitHub and modify the same file — for example:
+    System.out.println("Calculator initialized.");
+4.	Try to pull in IntelliJ:
+    IntelliJ will warn you about uncommitted changes
+    You may get a conflict or be forced to commit/stash
+
+✅ Correct Workflow
+1.	Make your local code changes
+2.	Go to Git → Commit…
+3.	Write a message:
+    Added startup message to calculator
+4.	Click Commit
+
+Then:
+5.	Go to Git → Pull
+
+This is the safest way to stay in sync without losing work or causing confusion.
+-----------------------------------------
+
+🧪 Practice: Git Clone with GitHub Personal Access Token (PAT)
+
+🔐 Step 1: Generate GitHub Personal Access Token (PAT)
+	1.	Go to https://github.com/settings/tokens
+	2.	Click “Tokens(classic)” -> Generate new token -> “Generate new token (classic)”
+    3.	Fill out the form:
+    •	Note: IntelliJ Git Clone Token
+    •	Expiration: 30 days (recommended)
+    •	Select scopes:
+    •	✅ repo
+    •	✅ admin:org
+    •	✅ user
+    4.	Click Generate token
+    5.	Copy the token now — you won’t be able to see it again.
+
+🔐 Step 2: Configure SSO for Cydeo-B40 organization
+    1. Goto Personal access tokens (classic) tab
+    2. Click on Configure SSO next to your token and enter Cydeo-B40
+    3. Click on Continue
+
+🖥️ Step 3: Clone Using IntelliJ
+	1.	In IntelliJ:
+	•	Click File → New → Project from Version Control → Git
+	2.	For URL, paste the HTTPS link of the repo:
+	https://github.com/Cydeo-B40/java-recordings-code.git
+
+	3.	IntelliJ will prompt for credentials:
+	•	Username: Your GitHub username
+	•	Password: Paste the token you copied earlier
+	4.	Click Clone
+
+⸻
+
+✅ IntelliJ will:
+	•	Download the project
+	•	Set up Git integration
+	•	Create a .idea folder automatically
+    •	Pull new changes
+⸻
+
+🧠 Why Use a Token?
+
+GitHub removed support for password-based Git operations over HTTPS.
+Tokens are more secure and can be restricted in scope and duration.
+-----------------------------------------
+
+🛠️ Git Rollback, Undo, and Reset Practice
+
+📁 Step 1: Create a New Java File
+
+1. In IntelliJ, right-click the `practice` package
+2. Select **New → Java Class**
+3. Name the file: `TextHelper`
+
+4. Add this code:
+
+   public class TextHelper {
+       public static String toUpper(String input) {
+           return input.toUpperCase();
+       }
+   }
+
+
+5. Commit this change:
+   - Git → Commit…
+   - Message: `Created TextHelper with toUpper method`
+   - Click **Commit**
+
+---
+
+🧪 Practice 1: Rollback Uncommitted Change
+
+1. Modify the method:
+
+   return input.toLowerCase(); // Wrong logic
+
+2. Right-click the file → Git → Show Diff
+3. Then right-click again → Git → Rollback
+4. Click **OK** to discard uncommitted changes
+
+---
+
+🧪 Practice 2: Undo Commit
+
+1. Add a new method:
+
+   public static int getLength(String input) {
+       return input.length();
+   }
+
+2. Commit it:
+   - Message: `Added getLength method`
+
+3. Go to **Git → Log**
+4. Right-click the latest commit → **Undo Commit**
+
+➡ Code stays in working directory, commit is removed.
+
+---
+
+🧪 Practice 3: Reset to an Earlier Commit
+
+1. In Git → Log, find this commit:
+   > Created TextHelper with toUpper method
+
+2. Right-click it → **Reset Current Branch to Here…**
+
+3. Choose reset mode:
+   - **Soft**: Keep code, remove commits
+   - **Mixed**: Undo commits, leave code changes
+   - **Hard**: Reset everything (⚠ destructive)
+
+🚨 IMPORTANT: Using git reset on commits that have already been pushed to a shared repository is risky,
+as it rewrites history and can cause issues for collaborators
+---
+Instead:
+git revert creates a new commit that undoes the changes introduced by a specific commit,
+ without altering the commit history.
+It is the preferred and safe method for undoing changes that have already been pushed
+
+♻️ Git Revert Commit Practice (Using IntelliJ)
+
+In this exercise, you’ll learn how to safely revert a commit using IntelliJ.
+Unlike `reset`, `revert` creates a new commit that undoes a previous one — great for shared branches.
+
+---
+
+📁 Step 1: Create a New Java File
+
+1. In IntelliJ, Add New → Java Class
+2. Name it: `RevertExample`
+3. Add this code:
+
+   public class RevertExample {
+       public static void status() {
+           System.out.println("System is running.");
+       }
+   }
+
+4. Commit it:
+   - Message: `Initial status method`
+
+---
+
+🧪 Step 2: Add a Problematic Commit
+
+1. Add another method:
+
+   public static void shutdown() {
+       System.out.println("System is shutting down.");
+   }
+
+2. Commit and Push it:
+   - Message: `Added shutdown method`
+
+---
+
+↩️ Step 3: Revert the Last Commit
+
+1. Go to **Git → Log**
+2. Find the commit:
+   > Added shutdown method
+3. Right-click on it → **Revert Commit**
+4. IntelliJ will:
+   - Create a new commit with message:
+     > Revert "Added shutdown method"
+   - Undo the `shutdown()` code safely
+
+✅ You’ve now reversed the change while keeping full history.
+Commit and push again
+
+📘 Quick Comparison
+
+| Action           | IntelliJ Menu                         | When to Use                                      |
+|------------------|-------------------------------------  |--------------------------------------------------|
+| Rollback file    | Right-click file → Git → Rollback     | Undo uncommitted code changes                    |
+| Undo Commit      | Git Log → Right-click → Undo Commit   | Uncommit latest changes before push              |
+| Reset to commit  | Git Log → Right-click → Reset         | Go back to previous commit (soft/mixed/hard)     |
+| Revert           | Git Log → Right-click → Revert Commit | Undo commit, creates new commit                  |
+
+-----------------------------------------------------------------
+Extras options:
+
+🧲 What is “Pull Hard”?
+
+A hard pull means discarding local changes and fully replacing your code with the remote version.
+
+⚠️ This will delete all local uncommitted and unpushed changes!
+
+✅ Use Case:
+
+You messed up local changes or commits and want to completely sync with the remote branch.
+
+⸻
+
+🧨 How to Pull Hard in IntelliJ
+
+Step 1: Stash or discard local changes
+	1.	Go to VCS → Git → Uncommitted Changes
+	2.	Either:
+	•	Right-click file → Git → Rollback
+	•	OR use Git → Stash/Shelf Changes…
+
+Step 2: Hard reset to remote
+	1.	Open Git → Log
+	2.	In the left sidebar, right-click the remote tracking branch
+(Example: origin/main)
+	3.	Select Reset Current Branch to Here…
+	4.	Choose: Hard
+	•	✔ This makes your local branch match the remote exactly
+
+⸻
+
+🚀 What is “Push Hard”?
+
+A hard push means force pushing your local code to the remote — even if the remote has newer commits.
+
+⚠️ This will overwrite remote history. Only use when safe (e.g., feature branch you own).
+
+⸻
+
+💣 How to Push Hard in IntelliJ
+
+Step 1: Make local changes
+
+Make sure your branch is ahead of the remote and has the correct code you want to force-push.
+
+Step 2: Force Push
+	1.	Go to Git → Push…
+	2.	In the bottom-left of the Push dialog, check: Force push (may discard changes)
+	3.	Click Push
+
+⸻
