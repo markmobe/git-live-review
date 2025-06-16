@@ -1,0 +1,169 @@
+
+🎓 Git Day01 Practice Using IntelliJ IDEA (No Command Line)
+
+📌 Goal:
+Learn how to:
+- Use Git inside IntelliJ
+- Edit/Add .gitignore
+- Commit changes with messages
+- Push to GitHub
+- Pull from GitHub
+- View Git history (log)
+- Understand Git changes visually
+
+✅ Step 1: Create a New Java Project
+
+1. Open IntelliJ IDEA.
+2. Click “File > New > Project”.
+3. Name your Java project: git-live-review
+
+✅ Step 1.1: Edit/Create a .gitignore File
+----IGNORE----
+1. Right-click your project root → New → File
+2. Name the file: `.gitignore`
+---------------
+3. Add the following contents:
+
+# Ignore IntelliJ and build files
+/.idea
+/out
+*.iml
+
+This will prevent unnecessary files and folders from being tracked by Git,
+such as IntelliJ config and compiled classes.
+
+✅ Step 2: Create a Java Package and Class
+
+1. Create a new package "day01_commit_push_pull" under src.
+2. Add new Java Class "Main"
+4. Add the following code:
+
+   public static void main(String[] args) {
+       System.out.println("Hello, Git!");
+   }
+
+✅ Step 3: Enable Git Integration in IntelliJ
+
+1. Top menu: go to VCS → Enable Version Control Integration.
+2. Select Git from the list → click OK.
+3. IntelliJ initializes a local Git repository.
+4. You’ll now see files turn red in the Project pane (this means they are untracked).
+
+✅ Step 4.1: Initial Commit (Add all files to Git)
+
+1. Go to Git → Commit…
+2. Select all files in the left panel.
+3. Write commit message:
+   ➤ Initial commit: added project structure and Main.java
+4. Click Commit
+
+✅ Step 4.2: Add a new class and another commit
+1. Create a new class Table
+2. Add static method multiplicationTable(int num)
+   ➤  prints multiplication table for the number
+3. Call the method from Main class with different numbers
+4. Make sure code runs properly then goto commit tab
+5. Commit with message "Added Table class with multiplicationTable method"
+
+✅ Step 5.0: Login to GitHub in IntelliJ settings
+1. Goto IntelliJ Settings -> Version Control -> GitHub -> Plus -> Login Via GitHub...
+
+✅ Step 5.1: Create a GitHub Repo
+
+1. Log in to GitHub → Click on Profile Round Icon on top right corner → Your Repositories.
+2. Click on New Repository button
+3. Enter repository name: git-live-review
+4. Choose visibility: Private
+5. Click Create Repository.
+
+✅ Step 5.2: Copy GitHub repository URL and add to local remotes
+
+1. Copy repository URL from GitHub
+2. In IntelliJ → Git menu → Manage Remotes
+3. Add new remote → name: origin , URL: paste GitHub repo url → OK
+
+Now we successfully connected local git repository with remote GitHub repository
+and ready for Push
+
+✅ Step 5.2: Push local commits to GitHub Repository
+
+1. In IntelliJ → Git menu → Push...
+2. Observe the commits then click on Push
+3. Verify By going to GitHub and refresh the page
+4. Click on Commits to see history
+5. Click on Project name to go back to main Repository page
+
+✅ Step 6: Make Your First Code Change and Commit
+
+1. Open Main.java and change the message:
+   System.out.println("First change: practicing Git commit!");
+2. IntelliJ shows a blue bar next to the modified line.
+3. Go to Git → Commit…
+   ➤ Message: Updated print message for Git practice
+4. Click Commit and Push.
+
+✅ Step 7: Add a New Class and Commit It
+
+1. Right-click day01 package → New → Java Class.
+2. Name it Helper.
+3. Add the following:
+   public class Helper {
+       public static String getGreeting() {
+           return "Hello from Helper!";
+       }
+   }
+4. Now update Main.java by adding the line:
+   System.out.println(Helper.getGreeting());
+
+5. Go to Git → Commit…
+   ➤ Message: Added Helper class with getGreeting method and used it in Main
+6. Click Commit and Push.
+
+✅ Step 8: View Git History (Log)
+
+1. Go to Git → Show Git Log.
+2. A bottom panel opens showing all commits:
+   - Each commit has a message, author, date/time.
+   - You can click each commit to view changes.
+
+✅ Step 9: Pull Changes from GitHub
+
+1. Open your GitHub repo in the browser.
+2. Click Main.java → Edit (pencil icon).
+3. Add this line inside main():
+   System.out.println("This change was made from GitHub!");
+4. Scroll down → Commit changes.
+
+5. Back in IntelliJ:
+   - Go to Git → Pull.
+   - IntelliJ will fetch and merge the change from GitHub.
+
+✅ Confirm the line appears in your IntelliJ file.
+
+✅ Step 10: Add One More Commit Locally
+
+1. Add a new method in Helper.java:
+   public static int getRandomNumber() {
+       return (int)(Math.random() * 100);
+   }
+
+2. Use it in Main.java:
+   System.out.println("Random number: " + Helper.getRandomNumber());
+
+3. Commit and push:
+   - Message: Added getRandomNumber method in Helper
+
+🔁 Extra Practice Ideas for you
+
+- Delete a line and commit the deletion.
+- Rename a method and see what IntelliJ tracks.
+- Add a .txt file and commit it.
+
+🧠 Git Concepts Recap (GUI Terms)
+
+| Concept           | Meaning                                  | IntelliJ Action             |
+|------------------|------------------------------------------|-----------------------------|
+| Commit           | Save changes locally with message         | Git → Commit…               |
+| Push             | Send local commits to GitHub              | Git → Push                  |
+| Pull             | Fetch latest from GitHub                  | Git → Pull                  |
+| Log              | View history of all commits               | Git → Log                   |
