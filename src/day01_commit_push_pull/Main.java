@@ -7,5 +7,6 @@ public class Main {
 
         Table.multiplicationTable(5);
         Table.multiplicationTable(7);
+        Table.multiplicationTable(9);
     }
 }
