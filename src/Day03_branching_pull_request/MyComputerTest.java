@@ -8,5 +8,6 @@ public class MyComputerTest {
 
         MyComputer myPC = new MyComputer("HP", 955.0);
         System.out.println(myPC);
+        System.out.println("Stock report from local US200 branch");
     }
 }
