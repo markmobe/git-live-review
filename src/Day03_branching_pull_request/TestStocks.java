@@ -7,5 +7,7 @@ public class TestStocks {
 
         System.out.println("teslaStock = " + teslaStock);
         System.out.println("googleStock = " + googleStock);
+        System.out.println("Stock report from local US200 branch"); //local branch
+
     }
 }
