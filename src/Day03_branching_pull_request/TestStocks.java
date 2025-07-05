@@ -7,5 +7,6 @@ public class TestStocks {
 
         System.out.println("teslaStock = " + teslaStock);
         System.out.println("googleStock = " + googleStock);
+        System.out.println("Stock market report from GitHub master"); // from github
     }
 }
